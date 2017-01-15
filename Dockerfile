@@ -63,6 +63,9 @@ ENV APACHE_DOC_ROOT /var/www/html
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
+RUN usermod -u 1000 www-data
+RUN groupmod -g 1000 www-data
+
 # Additional PHP ini configuration
 COPY ./999-php.ini /usr/local/etc/php/conf.d/
 
