@@ -49,6 +49,10 @@ RUN docker-php-ext-install zip
 RUN apt-get update \
     && apt-get install -y git
 
+# Install Ruid2
+RUN apt-get update \
+    && apt-get install -y libapache2-mod-ruid2
+
 # Install xsl
 RUN apt-get update \
     && apt-get install -y libxslt-dev \
@@ -62,9 +66,6 @@ ENV APACHE_DOC_ROOT /var/www/html
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
-
-RUN usermod -u 1000 www-data
-RUN groupmod -g 1000 www-data
 
 # Additional PHP ini configuration
 COPY ./999-php.ini /usr/local/etc/php/conf.d/

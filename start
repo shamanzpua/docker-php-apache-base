@@ -12,6 +12,8 @@ sed -i "s|DocumentRoot /var/www/html\$|DocumentRoot $APACHE_DOC_ROOT|" /etc/apac
 echo "<Directory $APACHE_DOC_ROOT>" > /etc/apache2/conf-available/document-root-directory.conf
 echo "	AllowOverride All" >> /etc/apache2/conf-available/document-root-directory.conf
 echo "	Require all granted" >> /etc/apache2/conf-available/document-root-directory.conf
+echo "	RMode stat" >> /etc/apache2/conf-available/document-root-directory.conf
+echo "	RGroups www-data" >> /etc/apache2/conf-available/document-root-directory.conf
 echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
 
